@@ -1016,10 +1016,6 @@ function VectorInteractionHOC(Component /* options */) {
         event.preventDefault();
         event.stopPropagation();
         const { selectionLayerUpdate, annotationVisibilityToggle } = this.props;
-        this.props.selectionLayerUpdate({
-          start: annotation.start,
-          end: annotation.end
-        });
         if (annotation.isOrf) {
           return [
             {
