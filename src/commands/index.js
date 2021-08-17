@@ -873,7 +873,10 @@ const editCommandDefs = {
               props.annotationVisibilityShow("orfs");
               props.minimumOrfSizeUpdate(minimumOrfSize);
             }}
-            value={props.minimumOrfSize}
+            defaultValue={props.minimumOrfSize}
+            onBlur={function (event) {
+              event.target.value = props.minimumOrfSize;
+            }}
           />
         </div>
       );
