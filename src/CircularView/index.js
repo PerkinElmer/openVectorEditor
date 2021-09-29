@@ -437,6 +437,9 @@ export function CircularView(props) {
   if (radius < 150) radius = 150;
   const widthToUse = Math.max(Number(width) || 300);
   const heightToUse = Math.max(Number(height) || 300);
+  const bpTitle = isProtein
+    ? `${Math.floor(sequenceLength / 3)} AAs`
+    : `${sequenceLength} bps`;
   return (
     <div
       style={{
@@ -501,33 +504,22 @@ export function CircularView(props) {
             {annotationsSvgs}
             {!hideName && (
               <foreignObject
-                x={-widthToUse / 2}
-                y={-heightToUse / 2}
-                width={widthToUse}
-                height={heightToUse}
+                x={(-innerRadius * scale) / 2}
+                y={(-innerRadius * scale) / 2}
+                width={innerRadius * scale}
+                height={innerRadius * scale}
               >
                 <div
-                  style={{
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    pointerEvents: "none"
-                  }}
                   xmlns="http://www.w3.org/1999/xhtml"
+                  key="circViewSvgCenterText"
+                  className="veCircularViewMiddleOfVectorText"
+                  style={{ width: innerRadius, textAlign: "center" }}
                 >
-                  <div
-                    key="circViewSvgCenterText"
-                    className="veCircularViewMiddleOfVectorText"
-                    style={{ width: innerRadius, textAlign: "center" }}
-                  >
-                    <span>{sequenceName} </span>
-                    <br />
-                    <span style={{ fontSize: 10 }}>
-                      {isProtein
-                        ? `${Math.floor(sequenceLength / 3)} AAs`
-                        : `${sequenceLength} bps`}
-                    </span>
-                  </div>
+                  <span title={sequenceName}>{sequenceName}</span>
+                  <br />
+                  <span title={bpTitle} style={{ fontSize: 10 }}>
+                    {bpTitle}
+                  </span>
                 </div>
               </foreignObject>
             )}
