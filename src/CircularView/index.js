@@ -520,7 +520,7 @@ export function CircularView(props) {
                       className="veCircularViewTextWrapper"
                       style={{
                         width: innerRadius * scale,
-                        height: innerRadius * scale - 15,
+                        maxHeight: innerRadius * scale - 15,
                         overflow: "hidden",
                         textOverflow: "ellipsis"
                       }}
