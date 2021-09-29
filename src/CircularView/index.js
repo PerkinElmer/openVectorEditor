@@ -472,30 +472,6 @@ export function CircularView(props) {
         onStop={editorDragStopped}
       >
         <div>
-          {!hideName && (
-            <div
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                pointerEvents: "none"
-              }}
-            >
-              <div
-                key="circViewSvgCenterText"
-                className="veCircularViewMiddleOfVectorText"
-                style={{ width: innerRadius, textAlign: "center" }}
-              >
-                <span>{sequenceName} </span>
-                <br />
-                <span style={{ fontSize: 10 }}>
-                  {isProtein
-                    ? `${Math.floor(sequenceLength / 3)} AAs`
-                    : `${sequenceLength} bps`}
-                </span>
-              </div>
-            </div>
-          )}
           <svg
             key="circViewSvg"
             onClick={(event) => {
@@ -523,6 +499,38 @@ export function CircularView(props) {
             } ${radius * 2 * scale}`}
           >
             {annotationsSvgs}
+            {!hideName && (
+              <foreignObject
+                x={-widthToUse / 2}
+                y={-heightToUse / 2}
+                width={widthToUse}
+                height={heightToUse}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    pointerEvents: "none"
+                  }}
+                  xmlns="http://www.w3.org/1999/xhtml"
+                >
+                  <div
+                    key="circViewSvgCenterText"
+                    className="veCircularViewMiddleOfVectorText"
+                    style={{ width: innerRadius, textAlign: "center" }}
+                  >
+                    <span>{sequenceName} </span>
+                    <br />
+                    <span style={{ fontSize: 10 }}>
+                      {isProtein
+                        ? `${Math.floor(sequenceLength / 3)} AAs`
+                        : `${sequenceLength} bps`}
+                    </span>
+                  </div>
+                </div>
+              </foreignObject>
+            )}
           </svg>
           <div className="veWarningContainer">
             {!circular && !noWarnings && (
