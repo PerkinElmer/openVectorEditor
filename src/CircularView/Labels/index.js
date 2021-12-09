@@ -208,7 +208,7 @@ const DrawLabelGroup = withHover(function ({
   ) {
     const _textLength = getTextLength(text);
     if (_textLength > currentLength) {
-      return textLength;
+      return _textLength;
     }
     return currentLength;
   },
